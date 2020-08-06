@@ -102,7 +102,8 @@ const data = [
 
     <span class="expandButton">+</span>
   </div>
-
+ 
+  
   Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
   This listener should toggle the class 'article-open' on div.article.
 
@@ -114,3 +115,87 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+
+ /*function articleMaker(articleObj) {
+
+  const parentDiv = document.querySelector(".articles");
+  
+  articleObj.forEach((element) => {
+  const articleMain = document.createElement('div')
+  const articleH2 = document.createElement('h2')
+  const articleDateP = document.createElement('p')
+  const articleP = document.createElement('p')
+  const articleP2 = document.createElement('p')
+  const articleP3 = document.createElement('p')
+  const articleSpan = document.createElement('span')
+  
+  articleMain.classList.add('article')
+  articleDateP.classList.add('date')
+  articleSpan.classList.add('expandButton')
+  
+  articleMain.appendChild(articleH2)
+  articleMain.appendChild(articleDateP)
+  articleMain.appendChild(articleP)
+  articleMain.appendChild(articleP2)
+  articleMain.appendChild(articleP3)
+  articleMain.appendChild(articleSpan)
+
+ articleH2.textContent = articleObj.title;
+ articleDateP.textContent = articleObj.date;
+ articleP.textContent = articleObj.firstParagraph;
+ articleP2.textContent = articleObj.secondParagraph;
+ articleP3.textContent = articleObj.thirdParagraph;
+ articleSpan.textContenet = '+';
+  
+ articleSpan.addEventListener('click', () => {
+  articleMain.classList.toggle('article-open')
+
+})
+return articleMain;
+
+}
+ 
+let articlesContainer = document.querySelector(".articles")
+ data.forEach((dataElement) => {
+   let articles = articleMaker(dataElement);
+   articlesContainer.appendChild(articles);
+ };*/
+
+ function articleMaker(articleItems){
+  const article = document.createElement('div');
+  const title = document.createElement('h2');
+  const date = document.createElement('p');
+  const firstParagraph = document.createElement('p');
+  const secondParagraph = document.createElement('p');
+  const thirdParagraph = document.createElement('p');
+  const expandButton = document.createElement('span');
+
+  date.className = 'date';
+  article.className = 'article';
+
+  date.textContent = articleItems.date;
+  title.textContent = articleItems.title;
+  expandButton.className = 'expandButton';
+
+  firstParagraph.textContent = articleItems.firstParagraph;
+  secondParagraph.textContent = articleItems.secondParagraph;
+  thirdParagraph.textContent = articleItems.thirdParagraph;
+  expandButton.textContent = '+';
+
+  expandButton.addEventListener('click', () => article.classList.toggle('article-open'));
+
+  article.append(title, date, firstParagraph, secondParagraph, thirdParagraph, expandButton);
+
+  return article;
+}
+
+const articles = document.querySelector('.articles');
+
+data.forEach(article => articles.appendChild(articleMaker(article)));
+
+let newArticle = {title: 'fghjkjhgfghj', date: 'fghjkkjhgfdf',firstParagraph: 'dfghjhgfdfghjkjhgfdfghjkkjhgfdfghjkjhgfdfghjkjhgfddfghjjhgfddfgh', secondParagraph: 'kjhgfdfghjkjhgfdsdfghjkhgfdssdfghjhwqwertyuiuytrewertyuuytrewertyutrewertyu', thirdParagraph: 'jhgfdsasdfghjklkjhgfdsasdfghjkjhgfdsasdfghjkjhgfdsdfghjkkjhgfdssdfghjhgfdsasdfgh' };
+
+let newPageArticle = articleMaker(newArticle)
+
+articles.appendChild(newPageArticle)
